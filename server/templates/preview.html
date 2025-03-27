@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Preview</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .module { margin: 20px 0; padding: 20px; border: 1px solid #eee; border-radius: 8px; }
+        .lesson { margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="courseTitle"></h1>
+        <p id="courseDescription"></p>
+        <div id="modules"></div>
+    </div>
+    <script>
+        // Fetch and render course data
+        fetch(window.location.href.replace('/preview', '/api/courses/' + window.location.pathname.split('/')[2] + '/preview'))
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('courseTitle').textContent = data.course.title;
+                document.getElementById('courseDescription').textContent = data.course.description;
+                
+                const modulesContainer = document.getElementById('modules');
+                data.course.modules.forEach(module => {
+                    const moduleEl = document.createElement('div');
+                    moduleEl.className = 'module';
+                    moduleEl.innerHTML = `
+                        <h2>${module.title}</h2>
+                        ${module.description ? `<p>${module.description}</p>` : ''}
+                        ${module.lessons.map(lesson => `
+                            <div class="lesson">
+                                <h3>${lesson.title}</h3>
+                                ${lesson.content}
+                            </div>
+                        `).join('')}
+                    `;
+                    modulesContainer.appendChild(moduleEl);
+                });
+            });
+    </script>
+</body>
+</html>

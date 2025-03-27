@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.adlnet.org/xsd/adlseq_v1p3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.adlnet.org/xsd/adlseq_v1p3" elementFormDefault="qualified" version="1.0">
+  <xs:annotation>
+    <xs:documentation>
+      This is a simplified SCORM 2004 sequencing schema for demonstration purposes only.
+      In a real implementation, you would use the complete ADL schemas.
+    </xs:documentation>
+  </xs:annotation>
+  
+  <xs:element name="objectives">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="primaryObjective" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="minNormalizedMeasure" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="objectiveID" type="xs:string"/>
+            <xs:attribute name="satisfiedByMeasure" type="xs:boolean"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="objective" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="minNormalizedMeasure" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="objectiveID" type="xs:string" use="required"/>
+            <xs:attribute name="satisfiedByMeasure" type="xs:boolean"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

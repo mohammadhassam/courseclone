@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.adlnet.org/xsd/adlcp_v1p3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.adlnet.org/xsd/adlcp_v1p3" elementFormDefault="qualified" version="1.0">
+  <xs:annotation>
+    <xs:documentation>
+      This is a simplified SCORM 2004 schema for demonstration purposes only.
+      In a real implementation, you would use the complete ADL schemas.
+    </xs:documentation>
+  </xs:annotation>
+  
+  <xs:element name="location" type="xs:string"/>
+  <xs:element name="completionThreshold" type="xs:decimal"/>
+  <xs:element name="dataFromLMS" type="xs:string"/>
+  <xs:element name="data" type="xs:string"/>
+  
+  <xs:attribute name="scormType">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="sco"/>
+        <xs:enumeration value="asset"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+</xs:schema>
